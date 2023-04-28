@@ -1,4 +1,4 @@
-require('./Places');
+require('./Description');
 const mongoose = require('mongoose');
 const Description = mongoose.model('description');
 
