@@ -1,10 +1,10 @@
 require('./Places');
 const mongoose = require('mongoose');
-const Places = mongoose.model('places');
+const Description = mongoose.model('description');
 
 module.exports = {
-	async indexByCategory(req, res) {
-		Places.find({ category: req.params.category })
+	async indexByPlace(req, res) {
+		Description.find({ placeId: req.params.placeId })
 			.then((data) => {
 				res.send(data);
 			})
@@ -13,7 +13,7 @@ module.exports = {
 			});
 	},
 	async indexAll(req, res) {
-		Places.find({})
+		Description.find({})
 			.then((data) => {
 				res.send(data);
 			})
@@ -22,14 +22,14 @@ module.exports = {
 			});
 	},
 	async add(req, res) {
-		const place = new Places({
-			category: req.body.category,
-			nome: req.body.nome,
-			tipo: req.body.tipo,
-			distancia: req.body.distancia,
-			stars: req.body.stars,
+		const description = new Description({
+			placeId: req.body.placeId,
+			titulo: req.body.titulo,
+			img: req.body.img,
+			local: req.body.local,
+			desc: req.body.desc,
 		});
-		place
+		description
 			.save()
 			.then((data) => {
 				console.log(data);
@@ -41,7 +41,7 @@ module.exports = {
 	},
 	async update(req, res) {
 		const update = req.body.update;
-		Places.findOneAndUpdate({ _id: req.params.id }, update)
+		Description.findOneAndUpdate({ placeId: req.params.placeId }, update)
 			.then((data) => {
 				console.log(data);
 				res.send(data);
@@ -51,7 +51,7 @@ module.exports = {
 			});
 	},
 	async deleteById(req, res) {
-		Places.findByIdAndRemove(req.params.id)
+		Description.findOneAndRemove(req.params.placeId)
 			.then((data) => {
 				console.log(data);
 				res.send(data);

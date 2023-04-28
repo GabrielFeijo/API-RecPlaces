@@ -15,4 +15,28 @@ router.post('/createUser', userController.add);
 router.put('/updateUser/:id', userController.update);
 router.delete('/users/:id', userController.deleteById);
 
+const placesController = require('./places/placesController');
+
+router.get('/places/:category', placesController.indexByCategory);
+router.get('/places', placesController.indexAll);
+router.post('/createPlace', placesController.add);
+router.put('/updatePlace/:id', placesController.update);
+router.delete('/place/:id', placesController.deleteById);
+
+const descriptionController = require('./description/descriptionController');
+
+router.get('/description/:placeId', descriptionController.indexByCategory);
+router.get('/description', descriptionController.indexAll);
+router.post('/createDescription', descriptionController.add);
+router.put('/updateDescription/:placeId', descriptionController.update);
+router.delete('/deleteDescription/:placeId', descriptionController.deleteById);
+
+const commentsController = require('./comments/commentsController');
+
+router.get('/comments/:placeId', commentsController.indexByPlace);
+router.get('/comments', commentsController.indexAll);
+router.post('/createComment', commentsController.add);
+router.put('/updateComment/:id', commentsController.update);
+router.delete('/deleteComment/:id', commentsController.deleteById);
+
 module.exports = router;

@@ -28,7 +28,7 @@ app.use((req, res, next) => {
 });
 app.use(cors());
 app.get('/', (req, res) => {
-	res.send('Bem vindo a API da 99 Pets');
+	res.send('Bem vindo a API da RecPlaces');
 });
 
 // Importando rotas
