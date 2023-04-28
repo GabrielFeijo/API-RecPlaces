@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const Places = mongoose.model('places');
 
 module.exports = {
-	async indexByCategory(req, res) {
-		Places.find({ category: req.params.category })
+	async indexByTipo(req, res) {
+		Places.find({ tipo: req.params.tipo })
 			.then((data) => {
 				res.send(data);
 			})
@@ -23,11 +23,12 @@ module.exports = {
 	},
 	async add(req, res) {
 		const place = new Places({
-			category: req.body.category,
 			nome: req.body.nome,
 			tipo: req.body.tipo,
 			distancia: req.body.distancia,
 			stars: req.body.stars,
+			value: req.body.value,
+			allDay: req.body.allDay,
 		});
 		place
 			.save()
