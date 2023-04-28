@@ -25,7 +25,7 @@ router.delete('/place/:id', placesController.deleteById);
 
 const descriptionController = require('./description/descriptionController');
 
-router.get('/description/:placeId', descriptionController.indexByCategory);
+router.get('/description/:placeId', descriptionController.indexByPlace);
 router.get('/description', descriptionController.indexAll);
 router.post('/createDescription', descriptionController.add);
 router.put('/updateDescription/:placeId', descriptionController.update);
