@@ -4,7 +4,7 @@ const PlacesSchema = new mongoose.Schema({
 	category: String,
 	nome: String,
 	tipo: String,
-	distancia: String,
+	distancia: Number,
 	stars: Number,
 });
 
