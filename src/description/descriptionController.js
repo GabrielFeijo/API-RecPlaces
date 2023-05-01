@@ -4,7 +4,7 @@ const Description = mongoose.model('description');
 
 module.exports = {
 	async indexByPlace(req, res) {
-		Description.find({ placeId: req.params.placeId })
+		Description.findOne({ placeId: req.params.placeId })
 			.then((data) => {
 				res.send(data);
 			})
