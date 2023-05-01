@@ -21,6 +21,16 @@ module.exports = {
 				console.log(err);
 			});
 	},
+	async indexByName(req, res) {
+		const search = req.query.search;
+		Places.find({ nome: { $regex: search, $options: 'i' } })
+			.then((data) => {
+				res.send(data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	},
 	async add(req, res) {
 		const place = new Places({
 			nome: req.body.nome,

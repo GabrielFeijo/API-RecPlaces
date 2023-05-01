@@ -18,6 +18,7 @@ router.delete('/users/:id', userController.deleteById);
 const placesController = require('./places/placesController');
 
 router.get('/places/:tipo', placesController.indexByTipo);
+router.get('/searchPlaces', placesController.indexByName);
 router.get('/places', placesController.indexAll);
 router.post('/createPlace', placesController.add);
 router.put('/updatePlace/:id', placesController.update);
