@@ -1,5 +1,5 @@
-# API-99Pets
-API criada para integrar a aplicação 99 Pets🐶
+# API-RecPlaces
+
 
 O conceito de **API** nada mais é do que uma forma de comunicação entre sistemas. Ou seja, elas permitem a **integração** entre dois sistemas, em que um deles fornece informações e serviços que podem ser utilizados pelo outro, sem a necessidade de algum dos sistemas conhecer detalhes de implementação do software.
 
@@ -24,4 +24,3 @@ O conceito de **API** nada mais é do que uma forma de comunicação entre siste
    "server running"
    "connected to mongo yeahhh"
 
-# API-RecPlaces
