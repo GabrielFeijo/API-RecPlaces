@@ -24,6 +24,7 @@ module.exports = {
 	async add(req, res) {
 		const place = new Places({
 			nome: req.body.nome,
+			img: req.body.img,
 			tipo: req.body.tipo,
 			distancia: req.body.distancia,
 			stars: req.body.stars,

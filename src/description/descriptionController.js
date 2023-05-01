@@ -24,7 +24,8 @@ module.exports = {
 	async add(req, res) {
 		const description = new Description({
 			placeId: req.body.placeId,
-			titulo: req.body.titulo,
+			nome: req.body.nome,
+			contato: req.body.contato,
 			img: req.body.img,
 			local: req.body.local,
 			desc: req.body.desc,
