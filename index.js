@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
+const swaggerUi = require('swagger-ui-express');
+const swaggerFile = require('./swagger-output.json');
 
 const cors = require('cors');
 const config = require('./config');
@@ -34,6 +36,7 @@ app.get('/', (req, res) => {
 // Importando rotas
 const routes = require('./src/routes');
 app.use('/api', routes);
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 // Iniciando servidor
 app.listen(config.port, () => console.log('on: ' + config.port));

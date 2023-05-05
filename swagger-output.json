@@ -1,0 +1,745 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "API RecPlaces",
+    "description": "A API do RecPlaces é uma ferramenta essencial para o funcionamento do aplicativo RecPlaces, que tem como objetivo promover a divulgação e a valorização das áreas do Recife Antigo. A API permite que os desenvolvedores do aplicativo possam buscar e fornecer informações sobre os locais turísticos, culturais e históricos do bairro, além de possibilitar a interação dos usuários com o aplicativo."
+  },
+  "host": "localhost:4000/api",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/auth": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Endpoint para gerar uma chave de autenticação do usuário",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados necessários para gerar a chave",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "Email do usuário que deseja se autenticar"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "Senha do usuário que deseja se autenticar"
+                }
+              },
+              "required": [
+                "email",
+                "senha"
+              ]
+            }
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/checkAccess": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "description": "Endpoint para verificar se chave de autenticação é valida",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "header",
+            "description": "ID do usuário autenticado.",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token gerado na última autenticação.",
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para buscar usuário por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para listar todos os usuários",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/createUser": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para adcionar um novo usuário",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados do novo usuário",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Swagger Junior"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "swagger@gmail.com"
+                },
+                "senha": {
+                  "type": "string",
+                  "example": "Uma senha forte"
+                },
+                "roles": {
+                  "type": "array",
+                  "example": [
+                    "user"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "nome",
+                "email",
+                "senha",
+                "roles"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "409": {
+            "description": "Conflict"
+          }
+        }
+      }
+    },
+    "/updateUser/{id}": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para atualizar um usuário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "senha": {
+                  "example": "any"
+                },
+                "nome": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "roles": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/users/{id}": {
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "description": "Endpoint para deletar um usuário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/places/{tipo}": {
+      "get": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint para listar os local por tipo. Ex: Restaurantes, Bares e etc",
+        "parameters": [
+          {
+            "name": "tipo",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/searchPlaces": {
+      "get": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint para listar os locais cadastrados com nome específico.",
+        "parameters": [
+          {
+            "name": "search",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/places": {
+      "get": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint para listar todos os locais cadastrados.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/createPlace": {
+      "post": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint para cadastrar um novo local.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados de um novo local",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "nome": {
+                  "type": "string",
+                  "example": "Bar do Cleiton"
+                },
+                "img": {
+                  "type": "string",
+                  "example": "www.local.com/cleiton.jpg"
+                },
+                "tipo": {
+                  "type": "string",
+                  "example": "Bar"
+                },
+                "distancia": {
+                  "type": "number",
+                  "example": 4
+                },
+                "stars": {
+                  "type": "number",
+                  "example": 5
+                },
+                "value": {
+                  "type": "number",
+                  "example": 50
+                },
+                "allDay": {
+                  "type": "boolean",
+                  "example": true
+                }
+              },
+              "required": [
+                "nome",
+                "img",
+                "tipo",
+                "distancia",
+                "stars",
+                "value",
+                "allDay"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/updatePlace/{id}": {
+      "put": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint para atualizar um local já cadastrado.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "update": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/place/{id}": {
+      "delete": {
+        "tags": [
+          "Places"
+        ],
+        "description": "Endpoint para deletar novo local por ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/description/{placeId}": {
+      "get": {
+        "tags": [
+          "Description"
+        ],
+        "description": "Endpoint para buscar a descrição do local cadastrado.",
+        "parameters": [
+          {
+            "name": "placeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/description": {
+      "get": {
+        "tags": [
+          "Description"
+        ],
+        "description": "Endpoint para listar todos as descrições dos locais.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/createDescription": {
+      "post": {
+        "tags": [
+          "Description"
+        ],
+        "description": "Endpoint para adicionar um nova descrição.",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados para uma nova descrição",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "placeId": {
+                  "type": "string",
+                  "example": "644b56af536faa0008f6c8de"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Bar do Cleiton"
+                },
+                "contato": {
+                  "type": "string",
+                  "example": "(81) 9 9999-9999"
+                },
+                "img": {
+                  "type": "string",
+                  "example": "www.local.com/bar.jpg"
+                },
+                "local": {
+                  "type": "object",
+                  "properties": {
+                    "rua": {
+                      "type": "string",
+                      "example": "Rua tal tal"
+                    },
+                    "numero": {
+                      "type": "number",
+                      "example": 5
+                    },
+                    "cidade": {
+                      "type": "string",
+                      "example": "Recife"
+                    },
+                    "UF": {
+                      "type": "string",
+                      "example": "PE"
+                    },
+                    "CEP": {
+                      "type": "string",
+                      "example": "99999-999"
+                    }
+                  }
+                },
+                "desc": {
+                  "type": "string",
+                  "example": "Aberto de sexta a domingo à partir das 15:00 Clone de Caipirinha e Caipirosca todos os dias."
+                }
+              },
+              "required": [
+                "placeId",
+                "nome",
+                "contato",
+                "img",
+                "local",
+                "desc"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/updateDescription/{placeId}": {
+      "put": {
+        "tags": [
+          "Description"
+        ],
+        "description": "Endpoint para atualizar uma descrição pelo ID do local.",
+        "parameters": [
+          {
+            "name": "placeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "update": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/deleteDescription/{placeId}": {
+      "delete": {
+        "tags": [
+          "Description"
+        ],
+        "description": "Endpoint para deletar uma descrição pelo ID do local.",
+        "parameters": [
+          {
+            "name": "placeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comments/{placeId}": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "description": "Endpoint para listar os comentários pelo local",
+        "parameters": [
+          {
+            "name": "placeId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/comments": {
+      "get": {
+        "tags": [
+          "Comments"
+        ],
+        "description": "Endpoint para listar todos comentários",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/createComment": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "description": "Endpoint para adicionar um novo comentário",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "description": "Dados para uma novo comentário",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "placeId": {
+                  "type": "string",
+                  "example": "Bar do Cleiton"
+                },
+                "nome": {
+                  "type": "string",
+                  "example": "Bar do Cleiton"
+                },
+                "comentario": {
+                  "type": "string",
+                  "example": "www.local.com/cleiton.jpg"
+                },
+                "avaliacao": {
+                  "type": "string",
+                  "example": "Bar"
+                }
+              },
+              "required": [
+                "placeId",
+                "nome",
+                "comentario",
+                "avaliacao"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
+    },
+    "/updateComment/{id}": {
+      "put": {
+        "tags": [
+          "Comments"
+        ],
+        "description": "Endpoint para atualizar um comentário",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "update": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/deleteComment/{id}": {
+      "delete": {
+        "tags": [
+          "Comments"
+        ],
+        "description": "Endpoint para deletar um comentário por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}

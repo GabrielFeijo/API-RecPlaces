@@ -6,6 +6,8 @@ const auth = require('../auth/authController');
 
 module.exports = {
 	async indexByUser(req, res) {
+		// #swagger.tags = ['User']
+		// #swagger.description = 'Endpoint para buscar usuário por ID'
 		let { id, token } = req.headers;
 
 		const authorized = await auth.checkAccess(id, token);
@@ -22,6 +24,9 @@ module.exports = {
 		}
 	},
 	async indexAll(req, res) {
+		// #swagger.tags = ['User']
+		// #swagger.description = 'Endpoint para listar todos os usuários'
+
 		let { id, token } = req.headers;
 
 		const authorized = await auth.checkAccess(id, token);
@@ -38,6 +43,19 @@ module.exports = {
 		}
 	},
 	async add(req, res) {
+		// #swagger.tags = ['User']
+		// #swagger.description = 'Endpoint para adcionar um novo usuário'
+		/*  #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Dados do novo usuário',
+                schema: {
+					$nome: 'Swagger Junior',
+                    $email: 'swagger@gmail.com',
+                    $senha: 'Uma senha forte',
+                    $roles: ['user']				
+
+                }
+        } */
 		const existente = await User.findOne({ email: req.body.email });
 
 		if (!existente) {
@@ -63,6 +81,8 @@ module.exports = {
 		}
 	},
 	async update(req, res) {
+		// #swagger.tags = ['User']
+		// #swagger.description = 'Endpoint para atualizar um usuário'
 		let { id, token } = req.headers;
 
 		const authorized = await auth.checkAccess(id, token);
@@ -87,6 +107,8 @@ module.exports = {
 		}
 	},
 	async deleteById(req, res) {
+		// #swagger.tags = ['User']
+		// #swagger.description = 'Endpoint para deletar um usuário'
 		let { id, token } = req.headers;
 
 		const authorized = await auth.checkAccess(id, token);
@@ -105,6 +127,8 @@ module.exports = {
 		}
 	},
 	async newUser(user) {
+		// #swagger.tags = ['User']
+		// #swagger.description = 'Endpoint para adcionar um novo usuário'
 		const { nome, email, senha, roles } = user;
 
 		const existente = await User.findOne({ email: email });

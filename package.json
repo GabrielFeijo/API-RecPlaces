@@ -1,23 +1,30 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcrypt": "^5.1.0",
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.6.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.9.1",
-    "mysql": "^2.18.1",
-    "nodemailer": "^6.9.1",
-    "uuid": "^9.0.0"
-  }
+	"name": "server",
+	"version": "1.0.0",
+	"description": "A API do RecPlaces é uma ferramenta essencial para o funcionamento do aplicativo RecPlaces, que tem como objetivo promover a divulgação e a valorização das áreas do Recife Antigo. A API permite que os desenvolvedores do aplicativo possam buscar e fornecer informações sobre os locais turísticos, culturais e históricos do bairro, além de possibilitar a interação dos usuários com o aplicativo.",
+	"main": "index.js",
+	"scripts": {
+		"dev": "nodemon --watch \"src/**\" --ext \"js,json\" --exec \"node ./index.js\"",
+		"start": "node index.js",
+		"swagger-autogen": "node swagger.js"
+	},
+	"author": "Gabriel Feijó",
+	"license": "ISC",
+	"dependencies": {
+		"bcrypt": "^5.1.0",
+		"bcryptjs": "^2.4.3",
+		"body-parser": "^1.19.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.6.0",
+		"express": "^4.17.1",
+		"mongoose": "^5.9.1",
+		"mysql": "^2.18.1",
+		"nodemailer": "^6.9.1",
+		"uuid": "^9.0.0",
+		"swagger-autogen": "^2.23.1",
+		"swagger-ui-express": "^4.1.4"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.22"
+	}
 }

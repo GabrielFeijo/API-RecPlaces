@@ -6,6 +6,17 @@ const bcrypt = require('bcryptjs');
 
 module.exports = {
 	async genAccess(req, res) {
+		// #swagger.tags = ['Authentication']
+		// #swagger.description = 'Endpoint para gerar uma chave de autenticação do usuário'
+		/*  #swagger.parameters['obj'] = {
+                in: 'body',
+                description: 'Dados necessários para gerar a chave',
+                schema: {
+					$email: 'Email do usuário que deseja se autenticar',
+                    $senha: 'Senha do usuário que deseja se autenticar',
+
+                }
+        } */
 		let result = {};
 		let messages = [];
 		let statusCode = 500;
@@ -58,6 +69,19 @@ module.exports = {
 	},
 
 	async publicCheckAccess(req, res) {
+		// #swagger.tags = ['Authentication']
+		// #swagger.description = 'Endpoint para verificar se chave de autenticação é valida'
+
+		/* #swagger.parameters['id'] = {
+	       in: 'header',
+               description: 'ID do usuário autenticado.',
+               type: 'string'
+        } */
+		/* #swagger.parameters['token'] = {
+	       in: 'header',
+               description: 'Token gerado na última autenticação.',
+               type: 'string'
+        } */
 		let result = {};
 		let messages = [];
 		let statusCode = 500;
